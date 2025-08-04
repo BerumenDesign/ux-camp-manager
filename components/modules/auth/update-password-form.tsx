@@ -1,19 +1,19 @@
 'use client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-import { cn } from '@/lib/utils'
-import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+} from '@/components/shared/card'
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/shared/input'
+import { Label } from '@/components/shared/label'
+import { Button } from '@/components/shared/button'
+import { createClient } from '@/lib/supabase/client'
 
 export function UpdatePasswordForm({
   className,
@@ -32,9 +32,11 @@ export function UpdatePasswordForm({
 
     try {
       const { data, error } = await supabase.auth.updateUser({ password })
+
       if (error) throw error
-      // Update this route to redirect to an authenticated route. The user already has an active session.
+
       const user = data.user
+
       if (user?.user_metadata?.role === 'candidate') {
         router.push('/candidate')
       } else if (user?.user_metadata?.role === 'admin') {

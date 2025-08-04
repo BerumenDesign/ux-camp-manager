@@ -1,13 +1,13 @@
 import { requireRole } from '@/lib/auth/role-guard'
 import { UserNav } from '@/components/modules/auth/user-nav'
 
-export default async function CandidateLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // This will redirect if user is not authenticated or doesn't have candidate role
-  const user = await requireRole('candidate')
+  // This will redirect if user is not authenticated or doesn't have admin role
+  const user = await requireRole('admin')
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -15,10 +15,10 @@ export default async function CandidateLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <h1 className="text-xl font-semibold text-gray-900">
-              Candidate Dashboard
+              Admin Dashboard
             </h1>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-500">Candidate Portal</span>
+              <span className="text-sm text-gray-500">Admin Panel</span>
               <UserNav user={user} />
             </div>
           </div>

@@ -1,20 +1,20 @@
 'use client'
 
-import { cn } from '@/lib/utils'
-import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { useState } from 'react'
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+} from '@/components/shared/card'
+import { cn } from '@/lib/utils'
+import { useLogin } from '@/hooks/auth/use-auth'
+import { Input } from '@/components/shared/input'
+import { Label } from '@/components/shared/label'
+import { Button } from '@/components/shared/button'
 
 export function LoginForm({
   className,
@@ -22,37 +22,11 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<'div'>) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const { login, isLoading, error } = useLogin()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-      if (error) throw error
-
-      // User data is available directly from the login response
-      const user = data.user
-      if (user?.user_metadata?.role === 'candidate') {
-        router.push('/candidate')
-      } else if (user?.user_metadata?.role === 'admin') {
-        router.push('/admin')
-      } else {
-        router.push('/')
-      }
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : 'An error occurred')
-    } finally {
-      setIsLoading(false)
-    }
+    await login({ email, password })
   }
 
   return (
@@ -96,7 +70,7 @@ export function LoginForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
+              {error && <p className="text-sm text-red-500">{error.message}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Logging in...' : 'Login'}
               </Button>

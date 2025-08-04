@@ -1,61 +1,39 @@
 'use client'
 
-import { cn } from '@/lib/utils'
-import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { useState } from 'react'
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+} from '@/components/shared/card'
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/shared/input'
+import { Label } from '@/components/shared/label'
+import { useSignup } from '@/hooks/auth/use-auth'
+import { Button } from '@/components/shared/button'
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) {
+  const { signup, isLoading, error } = useSignup()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
-    setIsLoading(true)
-    setError(null)
 
     if (password !== repeatPassword) {
-      setError('Passwords do not match')
-      setIsLoading(false)
       return
     }
 
-    console.log('window.location.origin🦄', window.location.origin)
-
-    try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/candidate`,
-        },
-      })
-      if (error) throw error
-      router.push('/auth/sign-up-success')
-    } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : 'An error occurred')
-    } finally {
-      setIsLoading(false)
-    }
+    await signup({ email, password })
   }
 
   return (
@@ -103,7 +81,10 @@ export function SignUpForm({
                   onChange={(e) => setRepeatPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
+              {password !== repeatPassword && password && repeatPassword && (
+                <p className="text-sm text-red-500">Passwords do not match</p>
+              )}
+              {error && <p className="text-sm text-red-500">{error.message}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Creating an account...' : 'Sign up'}
               </Button>

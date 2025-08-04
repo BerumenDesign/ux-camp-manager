@@ -3,12 +3,14 @@ import { getUserRole } from '@/lib/auth/role-guard'
 import { AuthButton } from '@/components/modules/auth/auth-button'
 
 interface PageProps {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function Home({ searchParams }: PageProps) {
   // Check if URL contains code parameter (email confirmation)
-  if (searchParams.code) {
+  const params = await searchParams
+
+  if (params.code) {
     redirect('/auth/login')
   }
 

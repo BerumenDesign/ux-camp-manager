@@ -15,8 +15,8 @@ const initialValues: ProposalFormData = {
   sessionName: '',
   sessionDescription: '',
   audienceTakeaway: '',
-  presentationLocation: '',
-  sessionFormat: '',
+  presentationLocation: locationOptions[0].value,
+  sessionFormat: formatOptions[0].value,
   specialRequests: '',
   otherComments: '',
   speakerName: '',
@@ -66,7 +66,7 @@ const ProposalForm = () => {
           <Form>
             <S.Section>
               <S.SectionTitle>SESSION INFORMATION</S.SectionTitle>
-              <Box>{JSON.stringify(formik.errors)}</Box>
+              {/* <Box>{JSON.stringify(formik.errors)}</Box> TODO: remove it after testing*/}
               <ProposalFormItem
                 formik={formik}
                 name="sessionName"

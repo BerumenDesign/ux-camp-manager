@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { FormikProps } from 'formik'
+
 import * as S from '../proposal/proposal-form.styles'
 import { ProposalFormData } from '../proposal/validation'
 import UploadProfileImage from '../upload-image/upload-image'
@@ -23,16 +24,31 @@ const Profile = ({ formik }: ProfileProps) => {
 
       <S.FormField>
         <S.Label>
-          Speaker Name <S.RequiredIcon />
+          First Name <S.RequiredIcon />
         </S.Label>
         <S.StyledTextField
           fullWidth
-          name="speakerName"
+          name="firstName"
           variant="outlined"
-          value={values.speakerName}
-          onChange={(e) => setFieldValue('speakerName', e.target.value)}
-          error={touched.speakerName && !!errors.speakerName}
-          helperText={touched.speakerName && errors.speakerName}
+          value={values.firstName}
+          onChange={(e) => setFieldValue('firstName', e.target.value)}
+          error={touched.firstName && !!errors.firstName}
+          helperText={touched.firstName && errors.firstName}
+        />
+      </S.FormField>
+
+      <S.FormField>
+        <S.Label>
+          Last Name <S.RequiredIcon />
+        </S.Label>
+        <S.StyledTextField
+          fullWidth
+          name="lastName"
+          variant="outlined"
+          value={values.lastName}
+          onChange={(e) => setFieldValue('lastName', e.target.value)}
+          error={touched.lastName && !!errors.lastName}
+          helperText={touched.lastName && errors.lastName}
         />
       </S.FormField>
 

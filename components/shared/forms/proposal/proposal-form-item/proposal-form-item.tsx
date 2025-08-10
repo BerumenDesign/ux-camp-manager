@@ -1,6 +1,7 @@
 import React from 'react'
-import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
 import { FormikProps } from 'formik'
+import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
+
 import * as S from './proposal-form-item.styles'
 
 export interface RadioOption {
@@ -30,7 +31,7 @@ const ProposalFormItem = <T extends Record<string, unknown>>({
   radioOptions = [],
   multiline = false,
 }: ProposalFormItemProps<T>) => {
-  const value = String(formik.values[name] || '')
+  const value = String(formik.values[name] ?? '')
   const touched = formik.touched[name]
   const error = formik.errors[name]
   const hasError = touched && !!error

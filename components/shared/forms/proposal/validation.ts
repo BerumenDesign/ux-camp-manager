@@ -48,7 +48,15 @@ export const proposalFormSchema = yup.object({
   otherComments: yup.string().optional(),
 
   // Speaker Information
-  speakerName: yup
+  firstName: yup
+    .string()
+    .test('not-empty', 'Speaker name is required', (value) => {
+      if (!value || value.trim().length === 0) {
+        return false
+      }
+      return true
+    }),
+  lastName: yup
     .string()
     .test('not-empty', 'Speaker name is required', (value) => {
       if (!value || value.trim().length === 0) {

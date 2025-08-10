@@ -1,11 +1,12 @@
 'use client'
 
 import { FormikProps } from 'formik'
+import { useRef, useState } from 'react'
 import { Typography } from '@mui/material'
 import { CloudUpload } from '@mui/icons-material'
+
 import * as S from '../proposal/proposal-form.styles'
 import { ProposalFormData } from '../proposal/validation'
-import { useRef, useState } from 'react'
 
 interface UploadProfileImageProps {
   formik: FormikProps<ProposalFormData>

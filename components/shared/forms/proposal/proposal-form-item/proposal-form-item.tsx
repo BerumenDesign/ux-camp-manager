@@ -1,6 +1,7 @@
 import React from 'react'
-import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
 import { FormikProps } from 'formik'
+import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
+
 import * as S from './proposal-form-item.styles'
 
 export interface RadioOption {

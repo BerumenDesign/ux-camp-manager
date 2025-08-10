@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { FormikProps } from 'formik'
+
 import * as S from '../proposal/proposal-form.styles'
 import { ProposalFormData } from '../proposal/validation'
 import UploadProfileImage from '../upload-image/upload-image'

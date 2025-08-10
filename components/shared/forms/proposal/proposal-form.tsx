@@ -58,7 +58,6 @@ const ProposalForm = () => {
       return
     }
 
-    // Handle proposal submission
     const { data: proposalData, error: proposalError } = await supabase
       .from('proposals')
       .insert([

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+
 import './globals.css'
+import ThemeRegistry from '@/theme/lib/ThemeRegistry'
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000'
@@ -17,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <ThemeRegistry>
+        <body>{children}</body>
+      </ThemeRegistry>
     </html>
   )
 }

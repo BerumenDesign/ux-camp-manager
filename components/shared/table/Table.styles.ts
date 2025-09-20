@@ -13,7 +13,7 @@ export const TableWrapper = styled(TableContainer)(({ theme }) => ({
 }))
 
 export const HeaderCell = styled(TableCell)(({ theme }) => ({
-  backgroundColor: theme.palette.gray.light,
+  // backgroundColor: theme.palette.gray.light,
   borderBottom: `2px solid ${theme.palette.gray.main}`,
 }))
 

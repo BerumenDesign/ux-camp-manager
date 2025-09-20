@@ -36,7 +36,7 @@ const ProposalForm = () => {
   const [isClient, setIsClient] = useState(false)
 
   //TODO: fetch it from BE
-  const hasProfile = true
+  const hasProfile = false
 
   useEffect(() => {
     setIsClient(true)

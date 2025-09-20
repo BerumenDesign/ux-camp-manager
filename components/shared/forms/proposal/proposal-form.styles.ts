@@ -130,6 +130,10 @@ export const FileUploadArea = styled(Box)({
     borderColor: '#e91e63',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
+  width: '100%',
+  maxWidth: '100%',
+  height: '100%',
+  maxHeight: '100%',
 })
 
 export const AddSpeakerButton = styled(Button)({

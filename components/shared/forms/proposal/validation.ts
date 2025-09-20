@@ -76,21 +76,7 @@ export const proposalFormSchema = yup.object({
       return true
     }),
   linkedinProfile: yup.string().optional(),
-  profilePicture: yup
-    .mixed()
-    .optional()
-    .test('fileSize', 'File size must be less than 5MB', (value) => {
-      if (!value) return true
-      const file = value as File
-      return file.size <= 5 * 1024 * 1024
-    })
-    .test('fileType', 'Only image files are allowed', (value) => {
-      if (!value) return true
-      const file = value as File
-      return ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(
-        file.type
-      )
-    }),
+  profilePicture: yup.string().optional().url('Must be a valid URL'),
 })
 
 export type ProposalFormData = yup.InferType<typeof proposalFormSchema>

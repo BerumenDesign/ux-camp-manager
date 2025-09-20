@@ -14,10 +14,6 @@ interface ProfileProps {
 const Profile = ({ formik }: ProfileProps) => {
   const { values, errors, touched, setFieldValue } = formik
 
-  const handleFileChange = (file: File) => {
-    setFieldValue('profilePicture', file)
-  }
-
   return (
     <S.Section>
       <S.SectionTitle>SPEAKER INFORMATION</S.SectionTitle>
@@ -119,7 +115,7 @@ const Profile = ({ formik }: ProfileProps) => {
         />
       </S.FormField>
 
-      <UploadProfileImage formik={formik} handleFileChange={handleFileChange} />
+      <UploadProfileImage formik={formik} />
     </S.Section>
   )
 }

@@ -58,7 +58,7 @@ const MyProposals = () => {
 
   return (
     <S.Container>
-      <Table columns={columns} rows={rows} path="my-proposals" />
+      <Table columns={columns} rows={rows} path="proposal" />
     </S.Container>
   )
 }

@@ -11,7 +11,7 @@ enum SubscriptionPaymentStatus {
 
 export const mockMyProposals = [
   {
-    id: '1',
+    id: 'dab65e8b-db5f-4ff5-9e83-d2bc6ab4ef98',
     title: 'Proposal 1',
     status: ProposalStatus.PENDING,
   },
@@ -39,7 +39,7 @@ export const mockMyProposals = [
 
 export const mockCandidateProposals = [
   {
-    id: '1',
+    id: '20be38d9-f98c-4072-8365-6afd7daa45e6',
     firstName: 'Luis',
     lastName: 'Berumen',
     email: 'luis@luis.com',

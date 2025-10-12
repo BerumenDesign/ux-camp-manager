@@ -69,7 +69,7 @@ const DetailItem = ({
   )
 
   return (
-    <S.EditBox isEdit={isEdit}>
+    <S.EditBox>
       <S.TitleBox isEdit={isEdit} isArray={isArray}>
         <Typography variant="body1" color={theme.palette.gray.main}>
           {label}

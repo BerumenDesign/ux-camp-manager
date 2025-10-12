@@ -16,22 +16,26 @@ const FormButtons = ({
   handleEdit,
 }: FormButtonsProps) => {
   const theme = useTheme()
+  const color = theme.palette.black.main
 
   return (
     <S.ButtonBox>
       {isEdit ? (
         <>
           <Button
-            sx={{
-              backgroundColor: theme.palette.white.main,
-            }}
+            variant="outlined"
             type="button"
             onClick={() => handleCancel()}
+            sx={{
+              color,
+              borderColor: theme.palette.black.main,
+            }}
           >
             Cancel
           </Button>
           <Button
             sx={{
+              color,
               backgroundColor: theme.palette.green.main,
             }}
             type="submit"
@@ -43,6 +47,7 @@ const FormButtons = ({
       ) : (
         <Button
           sx={{
+            color,
             backgroundColor: theme.palette.orange.main,
           }}
           type="button"

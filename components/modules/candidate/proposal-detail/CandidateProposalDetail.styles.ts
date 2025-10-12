@@ -4,13 +4,14 @@ import { styled } from '@mui/system'
 
 import palette from '@/theme/palette'
 
-export const Header = styled(Box)(() => ({
+export const Header = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
   marginBottom: '24px',
+  color: theme.palette.black.main,
 }))
 
 export const TitleBox = styled(Box)(() => ({

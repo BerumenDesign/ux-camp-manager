@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { Proposal } from '@/type/proposal/proposal'
+import { useState, useEffect } from 'react'
+
 import * as S from './ProposalInfo.styles'
 import DetailItem from '../detail-item/DetailItem'
-import { useEffect } from 'react'
+import { Proposal } from '@/type/proposal/proposal'
 import { createClient } from '@/lib/supabase/client'
+import { ProposalStatusMap } from '@/util/proposal/proposalDTO'
 
 interface ProposalInfoProps {
   values: Proposal
@@ -15,13 +16,7 @@ interface ProposalInfoProps {
   errors: any
 }
 
-const ProposalInfo = ({
-  values,
-  initialValues, // eslint-disable-line @typescript-eslint/no-unused-vars
-  isEdit,
-  touched, // eslint-disable-line @typescript-eslint/no-unused-vars
-  errors,
-}: ProposalInfoProps) => {
+const ProposalInfo = ({ values, isEdit, errors }: ProposalInfoProps) => {
   const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
@@ -45,7 +40,7 @@ const ProposalInfo = ({
         item={values.status}
         name="status"
         label="ProposalStatus"
-        displayValue={values.status.toUpperCase()}
+        displayValue={ProposalStatusMap[values.status]}
       />
 
       <DetailItem
@@ -94,7 +89,7 @@ const ProposalInfo = ({
         error={errors?.specialRequests}
       />
       <DetailItem
-        isEdit={isAdmin}
+        isEdit={isEdit}
         item={values.otherComments}
         name="otherComments"
         label="Other Comments"

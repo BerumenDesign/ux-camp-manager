@@ -14,8 +14,6 @@ import { proposalDTO } from '@/util/proposal/proposalDTO'
 import ProposalInfo from '@/components/shared/proposal-info/ProposalInfo'
 import FormButtons from '@/components/shared/forms/form-buttons/FormButtons'
 
-// Removed initialValues as it's no longer needed
-
 const CandidateProposalDetail = () => {
   const pathname = usePathname()
   const lastSegment = getLastSegment(pathname)
@@ -26,7 +24,6 @@ const CandidateProposalDetail = () => {
   const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
-    // Only run on client side to prevent hydration mismatch
     if (typeof window === 'undefined') return
 
     const fetchProposal = async () => {
@@ -34,7 +31,6 @@ const CandidateProposalDetail = () => {
         setLoading(true)
         const supabase = createClient()
 
-        // Convert lastSegment to number if it's a numeric string
         const proposalId = isNaN(Number(lastSegment))
           ? lastSegment
           : Number(lastSegment)
@@ -50,11 +46,8 @@ const CandidateProposalDetail = () => {
           return
         }
 
-        console.log('proposalData🦄', proposalData)
-
         if (proposalData) {
           const mappedProposal = proposalDTO(proposalData)
-          console.log('mappedProposal🐳', mappedProposal)
           setProposal(mappedProposal)
         }
       } catch (err) {
@@ -76,7 +69,6 @@ const CandidateProposalDetail = () => {
     try {
       const supabase = createClient()
 
-      // Convert camelCase to snake_case for database update
       const updateData = {
         session_name: values.sessionName,
         session_description: values.sessionDescription,
@@ -119,7 +111,6 @@ const CandidateProposalDetail = () => {
     return <div>Error: {error}</div>
   }
 
-  // Don't render the form until we have proposal data
   if (!proposal) {
     return <div>Loading...</div>
   }
@@ -138,7 +129,6 @@ const CandidateProposalDetail = () => {
               <S.Header>
                 <S.TitleBox>
                   <Typography variant="h4">Proposal Detail</Typography>
-                  {/* <S.Status status={values.status}>{values.status}</S.Status> */}
                   <FormButtons
                     isEdit={isEdit}
                     isValid={isValid}

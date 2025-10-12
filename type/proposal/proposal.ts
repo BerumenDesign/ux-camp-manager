@@ -31,7 +31,7 @@ export type Proposal = {
   sessionName: string
   sessionDescription: string
   audienceTakeaway: string
-  presentationLocation: PresentationLocation | null
+  presentationLocation: PresentationLocation | null | string
   sessionFormat: string
   specialRequests: string
   otherComments: string

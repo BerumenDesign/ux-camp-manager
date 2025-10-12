@@ -3,15 +3,12 @@ import { styled } from '@mui/system'
 
 import palette from '@/theme/palette'
 
-export const EditBox = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'isEdit',
-})<{ isEdit: boolean }>(({ isEdit, theme }) => ({
+export const EditBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'space-between',
   justifyContent: 'center',
   padding: '8px 0px',
-  backgroundColor: isEdit ? 'gray' : 'transparent',
   color: theme.palette.black.main,
   borderRadius: '8px',
   marginBottom: '8px',
@@ -38,12 +35,10 @@ export const customStyles = {
   width: '100%',
   height: 'auto',
   resize: 'none',
-  backgroundColor: palette.gray.dark,
-  color: palette.white.main,
   marginTop: '4px',
   padding: '4px 12px',
-  border: 'none',
   borderRadius: '4px',
   overflow: 'hidden',
   outline: 'none',
+  border: `1px solid ${palette.gray.main}`,
 }

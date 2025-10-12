@@ -7,7 +7,7 @@ import { Typography, useTheme } from '@mui/material'
 import * as S from './MyProposals.styles'
 import { createClient } from '@/lib/supabase/client'
 import Table, { Column } from '@/components/shared/table/Table'
-import { ProposalStatusMap } from '@/util/proposal/proposalDTO'
+import { ProposalStatusMap } from '@/type/proposal/proposalDTO'
 
 interface Proposal {
   id: string

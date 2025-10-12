@@ -4,14 +4,13 @@ import React from 'react'
 import { FormikProps } from 'formik'
 
 import * as S from '../proposal/proposal-form.styles'
-import { ProposalFormData } from '../proposal/validation'
 import UploadProfileImage from '../upload-image/upload-image'
 
 interface ProfileProps {
-  formik: FormikProps<ProposalFormData>
+  formik: FormikProps<any>
 }
 
-const Profile = ({ formik }: ProfileProps) => {
+const ProfileForm = ({ formik }: ProfileProps) => {
   const { values, errors, touched, setFieldValue } = formik
 
   return (
@@ -29,7 +28,7 @@ const Profile = ({ formik }: ProfileProps) => {
           value={values.firstName}
           onChange={(e) => setFieldValue('firstName', e.target.value)}
           error={touched.firstName && !!errors.firstName}
-          helperText={touched.firstName && errors.firstName}
+          helperText={touched.firstName && (errors.firstName as string)}
         />
       </S.FormField>
 
@@ -44,7 +43,7 @@ const Profile = ({ formik }: ProfileProps) => {
           value={values.lastName}
           onChange={(e) => setFieldValue('lastName', e.target.value)}
           error={touched.lastName && !!errors.lastName}
-          helperText={touched.lastName && errors.lastName}
+          helperText={touched.lastName && (errors.lastName as string)}
         />
       </S.FormField>
 
@@ -70,7 +69,7 @@ const Profile = ({ formik }: ProfileProps) => {
           value={values.title}
           onChange={(e) => setFieldValue('title', e.target.value)}
           error={touched.title && !!errors.title}
-          helperText={touched.title && errors.title}
+          helperText={touched.title && (errors.title as string)}
         />
       </S.FormField>
 
@@ -84,7 +83,7 @@ const Profile = ({ formik }: ProfileProps) => {
           value={values.company}
           onChange={(e) => setFieldValue('company', e.target.value)}
           error={touched.company && !!errors.company}
-          helperText={touched.company && errors.company}
+          helperText={touched.company && (errors.company as string)}
         />
       </S.FormField>
 
@@ -94,13 +93,13 @@ const Profile = ({ formik }: ProfileProps) => {
         </S.Label>
         <S.StyledTextField
           fullWidth
-          name="speakerBio"
+          name="bio"
           variant="outlined"
           multiline
-          value={values.speakerBio}
-          onChange={(e) => setFieldValue('speakerBio', e.target.value)}
-          error={touched.speakerBio && !!errors.speakerBio}
-          helperText={touched.speakerBio && errors.speakerBio}
+          value={values.bio}
+          onChange={(e) => setFieldValue('bio', e.target.value)}
+          error={touched.bio && !!errors.bio}
+          helperText={touched.bio && (errors.bio as string)}
         />
       </S.FormField>
 
@@ -108,10 +107,10 @@ const Profile = ({ formik }: ProfileProps) => {
         <S.Label>LinkedIn Profile</S.Label>
         <S.StyledTextField
           fullWidth
-          name="linkedinProfile"
+          name="linkedin"
           variant="outlined"
-          value={values.linkedinProfile}
-          onChange={(e) => setFieldValue('linkedinProfile', e.target.value)}
+          value={values.linkedin}
+          onChange={(e) => setFieldValue('linkedin', e.target.value)}
         />
       </S.FormField>
 
@@ -120,4 +119,4 @@ const Profile = ({ formik }: ProfileProps) => {
   )
 }
 
-export default Profile
+export default ProfileForm

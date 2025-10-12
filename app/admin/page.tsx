@@ -1,7 +1,8 @@
-export default async function AdminPage() {
-  return (
-    <div>
-      <h1>Admin Page</h1>
-    </div>
-  )
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+export default function AdminPage() {
+  const router = useRouter()
+  return router.push('/admin/dashboard')
 }

@@ -108,16 +108,7 @@ const Proposals = () => {
         </Typography>
       ),
     },
-    {
-      id: 'userName',
-      label: 'Presenter',
-      minWidth: 150,
-      render: (value: unknown) => (
-        <Typography variant="body1" color={theme.palette.black.main}>
-          {value as string}
-        </Typography>
-      ),
-    },
+
     {
       id: 'format',
       label: 'Session Format',
@@ -125,6 +116,16 @@ const Proposals = () => {
       render: (value: unknown) => (
         <Typography variant="body1" color={theme.palette.black.main}>
           {SessionFormatMap[value as string]}
+        </Typography>
+      ),
+    },
+    {
+      id: 'userName',
+      label: 'Presenter',
+      minWidth: 150,
+      render: (value: unknown) => (
+        <Typography variant="body1" color={theme.palette.black.main}>
+          {value as string}
         </Typography>
       ),
     },

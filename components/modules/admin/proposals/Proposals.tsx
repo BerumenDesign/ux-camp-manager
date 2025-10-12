@@ -95,6 +95,16 @@ const Proposals = () => {
       maxWidth: 100,
     },
     {
+      id: 'userName',
+      label: 'Presenter',
+      minWidth: 150,
+      render: (value: unknown) => (
+        <Typography variant="body1" color={theme.palette.black.main}>
+          {value as string}
+        </Typography>
+      ),
+    },
+    {
       id: 'title',
       label: 'Session Name',
       minWidth: 200,
@@ -119,16 +129,7 @@ const Proposals = () => {
         </Typography>
       ),
     },
-    {
-      id: 'userName',
-      label: 'Presenter',
-      minWidth: 150,
-      render: (value: unknown) => (
-        <Typography variant="body1" color={theme.palette.black.main}>
-          {value as string}
-        </Typography>
-      ),
-    },
+
     {
       id: 'location',
       label: 'Location',

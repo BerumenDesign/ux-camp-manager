@@ -67,16 +67,14 @@ export const proposalFormSchema = yup.object({
   pronouns: yup.string().optional(),
   title: yup.string().optional(),
   company: yup.string().optional(),
-  speakerBio: yup
-    .string()
-    .test('not-empty', 'Speaker bio is required', (value) => {
-      if (!value || value.trim().length === 0) {
-        return false
-      }
-      return true
-    }),
-  linkedinProfile: yup.string().optional(),
-  profilePicture: yup.string().optional().url('Must be a valid URL'),
+  bio: yup.string().test('not-empty', 'Speaker bio is required', (value) => {
+    if (!value || value.trim().length === 0) {
+      return false
+    }
+    return true
+  }),
+  linkedin: yup.string().optional(),
+  profilePicture: yup.string().url('Must be a valid URL'),
 })
 
 export type ProposalFormData = yup.InferType<typeof proposalFormSchema>

@@ -27,8 +27,8 @@ const initialValues: ProposalFormData = {
   pronouns: '',
   title: '',
   company: '',
-  speakerBio: '',
-  linkedinProfile: '',
+  bio: '',
+  linkedin: '',
   profilePicture: undefined,
 }
 
@@ -93,11 +93,11 @@ const ProposalForm = () => {
             id: user.id,
             first_name: values.firstName,
             last_name: values.lastName,
-            bio: values.speakerBio,
+            bio: values.bio,
             pronouns: values.pronouns,
             title: values.title,
             company: values.company,
-            linkedin_url: values.linkedinProfile,
+            linkedin_url: values.linkedin,
             avatar_url: values.profilePicture,
           },
         ])
@@ -134,7 +134,12 @@ const ProposalForm = () => {
         initialValues={initialValues}
         validationSchema={
           hasProfile
-            ? proposalFormSchema.omit(['firstName', 'lastName', 'speakerBio'])
+            ? proposalFormSchema.omit([
+                'firstName',
+                'lastName',
+                'bio',
+                'profilePicture',
+              ])
             : proposalFormSchema
         }
         onSubmit={handleSubmit}

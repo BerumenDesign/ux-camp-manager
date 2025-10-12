@@ -6,8 +6,8 @@ export type User = {
   firstName: string
   lastName: string
   bio: string
-  linkedIn: string
-  avatarUrl: string
+  linkedin: string
+  profilePicture: string
   company: string
   pronouns: string
   title: string

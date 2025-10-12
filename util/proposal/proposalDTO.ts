@@ -1,4 +1,4 @@
-const SessionFormatMap: Record<string, string> = {
+export const SessionFormatMap: Record<string, string> = {
   'half-day': 'Half Day',
   'full-day': 'Full Day',
   presentation: 'Presentation',
@@ -6,7 +6,7 @@ const SessionFormatMap: Record<string, string> = {
   panel: 'Panel',
 }
 
-const PresentationLocationMap: Record<string, string> = {
+export const PresentationLocationMap: Record<string, string> = {
   calgary: 'Calgary',
   edmonton: 'Edmonton',
   both: 'Both',

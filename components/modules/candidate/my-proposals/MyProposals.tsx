@@ -1,14 +1,17 @@
 'use client'
 
+import { toast } from 'react-toastify'
+import { useEffect, useState } from 'react'
 import { Typography, useTheme } from '@mui/material'
 
 import * as S from './MyProposals.styles'
-import { mockMyProposals } from './mockData'
+import { createClient } from '@/lib/supabase/client'
 import Table, { Column } from '@/components/shared/table/Table'
-import { ProposalStatus } from '@/type/proposal/proposal-status'
+import { ProposalStatusMap } from '@/util/proposal/proposalDTO'
 
-interface Data {
+interface Proposal {
   id: string
+  index: number
   title: string
   status: string
   [key: string]: unknown
@@ -16,16 +19,66 @@ interface Data {
 
 const MyProposals = () => {
   const theme = useTheme()
+  const [proposals, setProposals] = useState<Proposal[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProposals = async () => {
+      try {
+        const supabase = createClient()
+
+        const {
+          data: { user },
+        } = await supabase.auth.getUser()
+
+        if (!user) {
+          toast.error('Not authenticated')
+          setLoading(false)
+          return
+        }
+
+        const { data: proposalsData, error } = await supabase
+          .from('proposals')
+          .select('id, session_name, status')
+          .eq('user_id', user.id)
+
+        if (error || !proposalsData) {
+          toast.error('Failed to fetch proposals, please refresh the page')
+          setLoading(false)
+          return
+        }
+
+        const formattedProposals = proposalsData.map((proposal, index) => {
+          return {
+            id: proposal.id,
+            index: index + 1,
+            title: proposal.session_name,
+            status: proposal.status,
+          }
+        })
+
+        setProposals(formattedProposals)
+      } catch (err) {
+        toast.error(
+          err instanceof Error ? err.message : 'Failed to fetch proposals'
+        )
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProposals()
+  }, [])
 
   const columns: Column[] = [
     {
-      id: 'id',
-      label: 'ID',
+      id: 'index',
+      label: 'No.',
       maxWidth: 10,
     },
     {
       id: 'title',
-      label: 'Title',
+      label: 'Session Name',
       minWidth: 300,
     },
     {
@@ -34,31 +87,34 @@ const MyProposals = () => {
       width: 200,
       align: 'center',
       render: (value: unknown) => (
-        <S.Status status={value as ProposalStatus}>
+        <S.Status status={value as string}>
           <Typography
             variant="body1"
             color={theme.palette.black.main}
             fontWeight={600}
           >
-            {value as string}
+            {ProposalStatusMap[value as string]}
           </Typography>
         </S.Status>
       ),
     },
   ]
 
-  // TODO: use real data from BE
-  const rows: Data[] = mockMyProposals
-    .filter((item) => item !== undefined && item !== null)
-    .map((item) => ({
-      id: item.id,
-      title: item.title,
-      status: item.status,
-    }))
+  if (loading) {
+    return (
+      <S.Container>
+        <Typography variant="body1">Loading proposals...</Typography>
+      </S.Container>
+    )
+  }
 
   return (
     <S.Container>
-      <Table columns={columns} rows={rows} path="my-proposals" />
+      {proposals?.length > 0 ? (
+        <Table columns={columns} rows={proposals} path="proposal" />
+      ) : (
+        <Typography variant="body1">No proposals found</Typography>
+      )}
     </S.Container>
   )
 }

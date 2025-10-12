@@ -20,6 +20,7 @@ interface Proposal {
   status: string
   format: string
   location: string
+  userName: string
   [key: string]: unknown
 }
 
@@ -33,21 +34,36 @@ const Proposals = () => {
       try {
         const supabase = createClient()
 
-        const { data: proposalsData, error } = await supabase
-          .from('proposals')
-          .select(
-            'id, session_name, status, session_format,presentation_location'
-          )
+        const { data: proposalsData, error } = await supabase.from('proposals')
+          .select(`
+            id,
+            session_name,
+            status,
+            session_format,
+            presentation_location,
+            users:user_id (
+              first_name,
+              last_name
+            )
+          `)
 
         console.log('proposalsData🦄', proposalsData)
+        console.log('error🦄', error)
 
         if (error || !proposalsData) {
           toast.error('Failed to fetch proposals, please refresh the page')
+          console.error('Error details:', error)
           setLoading(false)
           return
         }
 
         const formattedProposals = proposalsData.map((proposal, index) => {
+          const user = proposal.users as unknown as {
+            first_name: string
+            last_name: string
+          } | null
+          const userName = user?.first_name + ' ' + user?.last_name || 'N/A'
+
           return {
             id: proposal.id,
             index: index + 1,
@@ -55,6 +71,7 @@ const Proposals = () => {
             status: proposal.status,
             format: proposal.session_format,
             location: proposal.presentation_location,
+            userName,
           }
         })
 
@@ -87,6 +104,16 @@ const Proposals = () => {
           color={theme.palette.black.main}
           fontWeight={600}
         >
+          {value as string}
+        </Typography>
+      ),
+    },
+    {
+      id: 'userName',
+      label: 'Presenter',
+      minWidth: 150,
+      render: (value: unknown) => (
+        <Typography variant="body1" color={theme.palette.black.main}>
           {value as string}
         </Typography>
       ),

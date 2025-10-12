@@ -10,7 +10,7 @@ import getLastSegment from '@/util/getLastSegment'
 import { Proposal } from '@/type/proposal/proposal'
 import { validationSchema } from './util/validation'
 import * as S from './CandidateProposalDetail.styles'
-import { proposalDTO } from '@/util/proposal/proposalDTO'
+import { proposalDTO } from '@/type/proposal/proposalDTO'
 import ProposalInfo from '@/components/shared/proposal-info/ProposalInfo'
 import FormButtons from '@/components/shared/forms/form-buttons/FormButtons'
 

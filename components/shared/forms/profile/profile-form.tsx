@@ -11,7 +11,7 @@ interface ProfileProps {
   formik: FormikProps<ProposalFormData>
 }
 
-const Profile = ({ formik }: ProfileProps) => {
+const ProfileForm = ({ formik }: ProfileProps) => {
   const { values, errors, touched, setFieldValue } = formik
 
   return (
@@ -120,4 +120,4 @@ const Profile = ({ formik }: ProfileProps) => {
   )
 }
 
-export default Profile
+export default ProfileForm

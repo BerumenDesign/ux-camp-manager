@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import React, { useEffect, useState } from 'react'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
-import Profile from '../profile/profile'
+import Profile from '../profile/profile-form'
 import * as S from './proposal-form.styles'
 import { createClient } from '@/lib/supabase/client'
 import { proposalFormSchema, ProposalFormData } from './validation'

@@ -11,7 +11,7 @@ import {
   PresentationLocationMap,
   ProposalStatusMap,
   SessionFormatMap,
-} from '@/util/proposal/proposalDTO'
+} from '@/type/proposal/proposalDTO'
 
 interface Proposal {
   id: string

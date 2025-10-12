@@ -6,7 +6,7 @@ import * as S from './ProposalInfo.styles'
 import DetailItem from '../detail-item/DetailItem'
 import { Proposal } from '@/type/proposal/proposal'
 import { createClient } from '@/lib/supabase/client'
-import { ProposalStatusMap } from '@/util/proposal/proposalDTO'
+import { ProposalStatusMap } from '@/type/proposal/proposalDTO'
 
 interface ProposalInfoProps {
   values: Proposal

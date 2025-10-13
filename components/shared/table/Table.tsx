@@ -19,6 +19,7 @@ interface TableProps<T extends TableRowData = TableRowData> {
   maxHeight?: number
   handleClick?: () => void
   path?: string
+  type?: 'admin' | 'candidate'
 }
 
 export interface Column<T extends TableRowData = TableRowData> {
@@ -39,6 +40,7 @@ const Table = <T extends TableRowData = TableRowData>({
   maxHeight,
   handleClick,
   path,
+  type = 'candidate',
 }: TableProps<T>) => {
   const theme = useTheme()
   const router = useRouter()
@@ -49,7 +51,7 @@ const Table = <T extends TableRowData = TableRowData>({
       return
     }
 
-    router.push(`/candidate/${path}/${id}`)
+    router.push(`/${type}/${path}/${id}`)
   }
 
   const [page, setPage] = useState(0)

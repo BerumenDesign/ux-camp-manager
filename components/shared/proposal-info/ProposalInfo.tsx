@@ -12,8 +12,8 @@ interface ProposalInfoProps {
   values: Proposal
   initialValues: Proposal
   isEdit: boolean
-  touched: any
-  errors: any
+  touched?: any
+  errors?: any
 }
 
 const ProposalInfo = ({ values, isEdit, errors }: ProposalInfoProps) => {

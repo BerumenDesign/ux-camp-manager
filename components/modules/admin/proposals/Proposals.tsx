@@ -170,7 +170,12 @@ const Proposals = () => {
   return (
     <s.Container>
       {proposals?.length > 0 ? (
-        <Table columns={columns} rows={proposals} path="proposal" />
+        <Table
+          columns={columns}
+          rows={proposals}
+          path="proposals"
+          type="admin"
+        />
       ) : (
         <Typography variant="body1">No proposals found</Typography>
       )}

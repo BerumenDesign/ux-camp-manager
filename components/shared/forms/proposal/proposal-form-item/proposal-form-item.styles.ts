@@ -6,17 +6,17 @@ export const FormField = styled(Box)({
   marginBottom: 24,
 })
 
-export const StyledTextField = styled(TextField)({
+export const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.white.main,
     '& fieldset': {
-      borderColor: 'rgba(255, 255, 255, 0.3)',
+      border: `0.5px solid ${theme.palette.gray.main}`,
     },
     '&:hover fieldset': {
-      borderColor: 'rgba(255, 255, 255, 0.5)',
+      border: `1px solid ${theme.palette.gray.main}`,
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#e91e63',
+      border: `1px solid ${theme.palette.gray.dark}`,
     },
   },
   '& .MuiInputLabel-root': {
@@ -34,17 +34,16 @@ export const StyledTextField = styled(TextField)({
   '& .MuiInputBase-inputMultiline': {
     minHeight: '80px',
   },
-})
+}))
 
 export const Label = styled(Typography)({
-  color: 'white',
   fontWeight: 'bold',
   marginBottom: 8,
 })
 
-export const StyledFormControl = styled(FormControl)({
+export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   '& .MuiFormLabel-root': {
-    color: 'white',
+    color: theme.palette.white.main,
     fontWeight: 'bold',
     marginBottom: 8,
   },
@@ -53,15 +52,15 @@ export const StyledFormControl = styled(FormControl)({
     gap: 16,
   },
   '& .MuiFormControlLabel-root': {
-    color: 'white',
+    color: theme.palette.black.main,
     '& .MuiRadio-root': {
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: theme.palette.black.main,
       '&.Mui-checked': {
-        color: '#e91e63',
+        color: theme.palette.black.main,
       },
     },
   },
-})
+}))
 
 export const ErrorMessage = styled(Typography)({
   color: '#f44336',
@@ -69,12 +68,12 @@ export const ErrorMessage = styled(Typography)({
   marginTop: 8,
 })
 
-export const CharacterCount = styled(Typography)({
-  color: 'rgba(255, 255, 255, 0.7)',
+export const CharacterCount = styled(Typography)(({ theme }) => ({
+  color: theme.palette.black.main,
   fontSize: '12px',
   textAlign: 'right',
   marginTop: 4,
-})
+}))
 
 export const RequiredIcon = styled(EmergencyIcon)({
   fontSize: '10px',

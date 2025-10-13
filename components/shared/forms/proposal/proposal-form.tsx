@@ -1,6 +1,6 @@
 'use client'
 
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
@@ -275,15 +275,20 @@ const ProposalForm = ({ type }: ProposalFormProps) => {
                 </S.ErrorMessage>
               )}
 
-              <S.SubmitButton
+              <Button
                 type="submit"
                 disabled={
                   formik.isSubmitting || Object.keys(formik.errors).length > 0
                 }
                 variant="contained"
+                fullWidth
+                sx={{
+                  marginTop: '24px',
+                  padding: '12px 32px',
+                }}
               >
                 Submit Proposal
-              </S.SubmitButton>
+              </Button>
             </Box>
           </Form>
         )}

@@ -1,58 +1,50 @@
-import {
-  Box,
-  TextField,
-  FormControl,
-  Button,
-  Typography,
-  Paper,
-} from '@mui/material'
+import { Box, TextField, FormControl, Typography, Paper } from '@mui/material'
 import { styled } from '@mui/system'
 import EmergencyIcon from '@mui/icons-material/Emergency'
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: 24,
-  maxWidth: 800,
   margin: '0 auto',
   padding: '24px',
-  backgroundColor: '#1a237e',
   minHeight: '100vh',
-  color: 'white',
-})
+  color: theme.palette.black.main,
+}))
 
 export const Header = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   gap: 16,
-  marginBottom: 32,
 })
 
 export const Logo = styled(Typography)({
   fontSize: '24px',
   fontWeight: 'bold',
-  color: 'white',
 })
 
 export const Title = styled(Typography)({
   fontSize: '32px',
   fontWeight: 'bold',
-  color: '#e91e63',
   textTransform: 'uppercase',
   letterSpacing: '2px',
 })
 
-export const Section = styled(Paper)({
+export const Label = styled(Typography)(({ theme }) => ({
+  color: theme.palette.black.main,
+  fontWeight: 'bold',
+  marginBottom: 8,
+}))
+
+export const Section = styled(Paper)(({ theme }) => ({
   padding: 24,
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  border: `2px solid ${theme.palette.gray.light}`,
   borderRadius: 8,
-})
+}))
 
 export const SectionTitle = styled(Typography)({
   fontSize: '20px',
   fontWeight: 'bold',
-  color: '#e91e63',
   marginBottom: 16,
   textTransform: 'uppercase',
 })
@@ -61,45 +53,41 @@ export const FormField = styled(Box)({
   marginBottom: 24,
 })
 
-export const StyledTextField = styled(TextField)({
+export const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.white.main,
     '& fieldset': {
-      borderColor: 'rgba(255, 255, 255, 0.3)',
+      border: `0.5px solid ${theme.palette.gray.main}`,
+      borderRadius: 8,
     },
     '&:hover fieldset': {
-      borderColor: 'rgba(255, 255, 255, 0.5)',
+      border: `1px solid ${theme.palette.gray.main}`,
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#e91e63',
+      border: `1.5px solid ${theme.palette.gray.dark}`,
     },
   },
   '& .MuiInputLabel-root': {
     display: 'none', // Hide the auto label
   },
   '& .MuiInputBase-input': {
-    color: '#333',
+    color: theme.palette.black.main,
     padding: '12px 16px',
     '&::placeholder': {
-      color: '#999',
+      color: theme.palette.black.main,
       opacity: 1,
     },
   },
   // For multiline textareas
   '& .MuiInputBase-inputMultiline': {
     minHeight: '80px',
+    padding: '0px',
   },
-})
+}))
 
-export const Label = styled(Typography)({
-  color: 'white',
-  fontWeight: 'bold',
-  marginBottom: 8,
-})
-
-export const StyledFormControl = styled(FormControl)({
+export const StyledFormControl = styled(FormControl)(({ theme }) => ({
   '& .MuiFormLabel-root': {
-    color: 'white',
+    color: theme.palette.white.main,
     fontWeight: 'bold',
     marginBottom: 8,
   },
@@ -108,75 +96,67 @@ export const StyledFormControl = styled(FormControl)({
     gap: 16,
   },
   '& .MuiFormControlLabel-root': {
-    color: 'white',
     '& .MuiRadio-root': {
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: theme.palette.gray.main,
       '&.Mui-checked': {
-        color: '#e91e63',
+        color: theme.palette.gray.dark,
       },
     },
   },
-})
+}))
 
-export const FileUploadArea = styled(Box)({
-  border: '2px dashed rgba(255, 255, 255, 0.5)',
+export const FileUploadArea = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  border: `1px dashed ${theme.palette.gray.main}`,
   borderRadius: 8,
   padding: 32,
   textAlign: 'center',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
   cursor: 'pointer',
-  transition: 'all 0.3s ease',
+
+  transition: 'all 0.2s ease',
   '&:hover': {
-    borderColor: '#e91e63',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    border: `1.5px dashed ${theme.palette.gray.dark}`,
   },
   width: '100%',
   maxWidth: '100%',
   height: '100%',
   maxHeight: '100%',
-})
+}))
 
-export const AddSpeakerButton = styled(Button)({
-  backgroundColor: 'white',
-  color: '#333',
-  border: '2px solid #333',
-  borderRadius: 8,
-  padding: '12px 24px',
-  fontWeight: 'bold',
-  textTransform: 'uppercase',
-  '&:hover': {
-    backgroundColor: '#f5f5f5',
-  },
-})
+export const FileUploadAreaContent = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}))
 
-export const SubmitButton = styled(Button)({
-  backgroundColor: '#666',
-  color: 'white',
-  borderRadius: 8,
-  padding: '12px 32px',
-  fontWeight: 'bold',
-  textTransform: 'uppercase',
-  '&:hover': {
-    backgroundColor: '#555',
-  },
-  '&.Mui-disabled': {
-    backgroundColor: '#444',
-    color: 'rgba(255, 255, 255, 0.5)',
-  },
-})
+export const ImageBox = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100px',
+  height: '100px',
+  borderRadius: '50%',
+  overflow: 'hidden',
+  objectFit: 'cover',
+}))
 
-export const ErrorMessage = styled(Typography)({
-  color: '#f44336',
+export const ErrorMessage = styled(Typography)(({ theme }) => ({
+  color: theme.palette.red.main,
   fontSize: '14px',
   marginTop: 8,
-})
+}))
 
-export const CharacterCount = styled(Typography)({
-  color: 'rgba(255, 255, 255, 0.7)',
+export const CharacterCount = styled(Typography)(({ theme }) => ({
+  color: theme.palette.black.main,
   fontSize: '12px',
   textAlign: 'right',
   marginTop: 4,
-})
+}))
 
 export const RequiredIcon = styled(EmergencyIcon)({
   fontSize: '10px',

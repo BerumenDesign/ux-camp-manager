@@ -40,6 +40,7 @@ export const Section = styled(Paper)(({ theme }) => ({
   padding: 24,
   border: `2px solid ${theme.palette.gray.light}`,
   borderRadius: 8,
+  marginBottom: 24,
 }))
 
 export const SectionTitle = styled(Typography)({
@@ -74,7 +75,7 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
     color: theme.palette.black.main,
     padding: '12px 16px',
     '&::placeholder': {
-      color: theme.palette.black.main,
+      color: theme.palette.gray.main,
       opacity: 1,
     },
   },

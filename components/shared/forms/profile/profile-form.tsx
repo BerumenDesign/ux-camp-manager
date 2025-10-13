@@ -8,14 +8,15 @@ import UploadProfileImage from '../upload-image/upload-image'
 
 interface ProfileProps {
   formik: FormikProps<any>
+  title?: string
 }
 
-const ProfileForm = ({ formik }: ProfileProps) => {
+const ProfileForm = ({ formik, title = 'USER PROFILE' }: ProfileProps) => {
   const { values, errors, touched, setFieldValue } = formik
 
   return (
     <S.Section>
-      <S.SectionTitle>SPEAKER INFORMATION</S.SectionTitle>
+      <S.SectionTitle>{title}</S.SectionTitle>
 
       <S.FormField>
         <S.Label>

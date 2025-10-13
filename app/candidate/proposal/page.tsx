@@ -1,7 +1,7 @@
-import ProposalForm from '@/components/shared/forms/proposal/proposal-form'
+import CreateProposal from '@/components/modules/candidate/create-proposal/CreateProposal'
 
 const ProposalPage = () => {
-  return <ProposalForm type="candidate" />
+  return <CreateProposal />
 }
 
 export default ProposalPage

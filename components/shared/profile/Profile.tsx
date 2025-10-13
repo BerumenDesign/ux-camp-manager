@@ -64,7 +64,7 @@ const Profile = () => {
       const supabase: SupabaseClient = createClient()
       const { data: updatedUserData, error: error } = await supabase
         .from('users')
-        .update({
+        .upsert({
           first_name: values.firstName,
           last_name: values.lastName,
           bio: values.bio,

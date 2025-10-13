@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import './globals.css'
 import ThemeRegistry from '@/theme/lib/ThemeRegistry'
+import ToastProvider from '@/components/shared/toast-provider'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -21,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <ThemeRegistry>
-        <body>{children}</body>
+        <body>
+          {children}
+          <ToastProvider />
+        </body>
       </ThemeRegistry>
     </html>
   )

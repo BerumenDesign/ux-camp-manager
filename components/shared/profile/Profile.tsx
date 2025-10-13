@@ -76,6 +76,7 @@ const Profile = () => {
         })
         .eq('id', user.id)
         .select()
+        .single()
 
       if (error || !updatedUserData) {
         console.error('Error updating user:', error)
@@ -98,6 +99,7 @@ const Profile = () => {
           initialValues={user}
           validationSchema={userFormSchema}
           onSubmit={handleSubmit}
+          enableReinitialize={true}
           validateOnChange={false}
           validateOnBlur={true}
           validateOnMount={false}

@@ -103,8 +103,7 @@ const UploadProfileImage = ({ formik }: UploadProfileImageProps) => {
             <Image
               src={values.profilePicture as string}
               alt="Profile preview"
-              width={100}
-              height={100}
+              fill
               style={{
                 borderRadius: '50%',
                 objectFit: 'cover',

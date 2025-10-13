@@ -135,6 +135,7 @@ export const FileUploadAreaContent = styled(Box)(() => ({
 }))
 
 export const ImageBox = styled(Box)(() => ({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -143,7 +144,6 @@ export const ImageBox = styled(Box)(() => ({
   height: '100px',
   borderRadius: '50%',
   overflow: 'hidden',
-  objectFit: 'cover',
 }))
 
 export const ErrorMessage = styled(Typography)(({ theme }) => ({

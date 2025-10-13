@@ -11,6 +11,6 @@ export const formatOptions = [
     value: 'presentation',
     label: 'Presentation (45 min session)',
   },
-  { value: 'quick-take', label: 'Quick Take (25 min session)' },
+  { value: 'quick-talk', label: 'Quick Talk (25 min session)' },
   { value: 'panel', label: 'Panel (45 min session)' },
 ]

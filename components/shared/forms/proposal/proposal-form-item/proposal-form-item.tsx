@@ -1,5 +1,5 @@
-import React from 'react'
 import { FormikProps } from 'formik'
+import React, { ChangeEvent } from 'react'
 import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
 
 import * as S from './proposal-form-item.styles'
@@ -49,7 +49,7 @@ const ProposalFormItem = <T extends Record<string, unknown>>({
           <RadioGroup
             name={name}
             value={value}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               handleChange(e.target.value)
             }
           >
@@ -74,7 +74,7 @@ const ProposalFormItem = <T extends Record<string, unknown>>({
             variant="outlined"
             multiline
             value={value}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               handleChange(e.target.value)
             }
             error={hasError}
@@ -90,7 +90,7 @@ const ProposalFormItem = <T extends Record<string, unknown>>({
             variant="outlined"
             multiline={multiline}
             value={value}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               handleChange(e.target.value)
             }
             error={hasError}

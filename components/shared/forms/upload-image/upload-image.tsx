@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { FormikProps } from 'formik'
 import { toast } from 'react-toastify'
 import { useRef, useState } from 'react'
-import { Typography } from '@mui/material'
 import { CloudUpload } from '@mui/icons-material'
+import { Typography, useTheme } from '@mui/material'
 
 import { createClient } from '@/lib/supabase/client'
 import * as S from '../proposal/proposal-form.styles'
@@ -17,6 +17,8 @@ interface UploadProfileImageProps {
 }
 
 const UploadProfileImage = ({ formik }: UploadProfileImageProps) => {
+  const theme = useTheme()
+
   const { values, errors, touched, setFieldValue } = formik
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -91,21 +93,13 @@ const UploadProfileImage = ({ formik }: UploadProfileImageProps) => {
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         sx={{
-          borderColor: dragActive ? '#e91e63' : 'rgba(255, 255, 255, 0.5)',
-          backgroundColor: dragActive
-            ? 'rgba(255, 255, 255, 0.1)'
-            : 'rgba(255, 255, 255, 0.05)',
+          borderColor: dragActive
+            ? theme.palette.gray.main
+            : theme.palette.gray.light,
         }}
       >
-        <CloudUpload
-          sx={{
-            fontSize: 48,
-            color: 'rgba(255, 255, 255, 0.7)',
-            marginBottom: 2,
-          }}
-        />
-        {values.profilePicture && !isUploading ? (
-          <div style={{ textAlign: 'center' }}>
+        {values.profilePicture && !isUploading && (
+          <S.ImageBox>
             <Image
               src={values.profilePicture as string}
               alt="Profile preview"
@@ -117,23 +111,23 @@ const UploadProfileImage = ({ formik }: UploadProfileImageProps) => {
                 marginBottom: 8,
               }}
             />
-            <Typography
-              variant="body2"
-              sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
-            >
-              Image uploaded successfully!
-            </Typography>
-          </div>
-        ) : (
-          <Typography
-            variant="body2"
-            sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
-          >
+          </S.ImageBox>
+        )}
+
+        <S.FileUploadAreaContent>
+          <CloudUpload
+            sx={{
+              fontSize: 48,
+              color: theme.palette.gray.main,
+              marginBottom: 2,
+            }}
+          />
+          <Typography variant="body2" sx={{ color: theme.palette.black.main }}>
             {isUploading
               ? 'Uploading...'
               : 'Drag & drop image here or click to browse'}
           </Typography>
-        )}
+        </S.FileUploadAreaContent>
       </S.FileUploadArea>
       <input
         ref={fileInputRef}

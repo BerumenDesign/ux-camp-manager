@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
+import { useEffect, useState } from 'react'
+import { Box, Button } from '@mui/material'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 import * as S from './Profile.styles'
@@ -11,7 +12,6 @@ import userDTO from '@/type/user/userDTO'
 import { userFormSchema } from './validation'
 import { createClient } from '@/lib/supabase/client'
 import ProfileForm from '@/components/shared/forms/profile/profile-form'
-import { Button } from '@mui/material'
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null)
@@ -105,14 +105,19 @@ const Profile = () => {
           {(formik) => (
             <Form>
               <ProfileForm formik={formik} />
-              <Button type="submit" variant="contained" fullWidth>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{ mt: 3, padding: '12px 32px' }}
+              >
                 Update Profile
               </Button>
             </Form>
           )}
         </Formik>
       ) : (
-        <div>Loading...</div>
+        <Box>Loading...</Box>
       )}
     </S.Container>
   )

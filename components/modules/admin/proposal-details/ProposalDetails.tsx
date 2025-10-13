@@ -16,6 +16,7 @@ import ProposalInfo from '@/components/shared/proposal-info/ProposalInfo'
 // import FormButtons from '@/components/shared/forms/form-buttons/FormButtons'
 import { toast } from 'react-toastify'
 import VoteForm from '@/components/shared/forms/vote/VoteForm'
+import { Divider, Typography } from '@mui/material'
 
 const SubmittedProposalDetails = () => {
   const pathname = usePathname()
@@ -112,16 +113,37 @@ const SubmittedProposalDetails = () => {
 
   return (
     <S.Container>
-      {proposal && (
-        <ProposalInfo
-          values={proposal}
-          initialValues={proposal}
-          isEdit={false}
-          //   touched={touched}
-          //   errors={errors}
+      <S.Section>
+        <Typography variant="h4" mb={1}>
+          Proposal Detail
+        </Typography>
+        <Divider
+          orientation="horizontal"
+          sx={{ color: 'divider', width: '100%', padding: '0px', mb: 3 }}
         />
-      )}
-      <VoteForm />
+        {proposal && (
+          <ProposalInfo
+            values={proposal}
+            initialValues={proposal}
+            isEdit={false}
+            //   touched={touched}
+            //   errors={errors}
+          />
+        )}
+      </S.Section>
+      <S.Section>
+        <Typography variant="h4" mb={1}>
+          Admin Review
+        </Typography>
+        <Divider
+          orientation="horizontal"
+          sx={{ color: 'divider', width: '100%', padding: '0px' }}
+        />
+        <Typography variant="h6" mb={1} mt={3}>
+          Evaluation Criteria
+        </Typography>
+        <VoteForm />
+      </S.Section>
 
       {/* <Formik
         initialValues={proposal}
